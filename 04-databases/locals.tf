@@ -6,7 +6,7 @@ locals {
      common_tag ={
         project_name = "${var.project_name}"
         env_name = "${var.env_name}"
-        terraform = true
+        Terraform = True
      }
 }
 
