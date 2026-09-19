@@ -29,7 +29,7 @@ resource "terraform_data" "mongodb" {
   }
 
  provisioner "file" {
-    source      = "boostrap.sh"
+    source      = "bootstrap.sh"
     destination = "/tmp/boostrap.sh"
   }
 
