@@ -6,6 +6,10 @@ data "aws_ssm_parameter" "database_subnet" {
   name = "${var.project_name}-${var.env_name}-database-subnet-id"
 }
 
+data "aws_ssm_parameter" "redis_sg_id" {
+  name = "${var.project_name}-${var.env_name}-redis_sg_id"
+}
+
 
 data "aws_ami" "ami_data" {
   most_recent      = true
