@@ -141,7 +141,7 @@ resource "terraform_data" "mysql" {
   }
 
   provisioner "remote-exec" {
-    inline = ["sudo dnf install python3-boto3 python3-botocore -y", "chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh mysql" ]
+    inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh mysql" ]
 
   }
   
