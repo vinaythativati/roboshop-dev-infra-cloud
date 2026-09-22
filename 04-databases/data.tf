@@ -18,6 +18,7 @@ data "aws_ssm_parameter" "mysql_sg_id" {
   name = "${var.project_name}-${var.env_name}-mysql_sg_id"
 }
 
+
 data "aws_ami" "ami_data" {
   most_recent      = true
   owners           = ["973714476881"]
