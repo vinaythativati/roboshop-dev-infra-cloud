@@ -10,6 +10,13 @@ data "aws_ssm_parameter" "redis_sg_id" {
   name = "${var.project_name}-${var.env_name}-redis_sg_id"
 }
 
+data "aws_ssm_parameter" "rabbitmq_sg_id" {
+  name = "${var.project_name}-${var.env_name}-rabbitmq_sg_id"
+}
+
+data "aws_ssm_parameter" "mysql_sg_id" {
+  name = "${var.project_name}-${var.env_name}-mysql_sg_id"
+}
 
 data "aws_ami" "ami_data" {
   most_recent      = true
