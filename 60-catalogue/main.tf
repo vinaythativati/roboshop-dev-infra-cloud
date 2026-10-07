@@ -29,7 +29,7 @@ resource "terraform_data" "cataloague" {
   }
 
   provisioner "remote-exec" {
-    inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh cataloague ${var.env_name}" ]
+    inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh cataloague ${var.env_name} ${app_version }" ]
 
   }
   
@@ -42,3 +42,13 @@ resource "aws_ec2_instance_state" "cataloague" {
   depends_on = [terraform_data.cataloague]
 }
 
+resource "aws_ami_from_instance" "cataloague" {
+  name               = "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}"
+  source_instance_id = aws_instance.cataloague.id
+  depends_on = [aws_ec2_instance_state.cataloague]
+  tags = merge({
+    Name = "${local.common_name}-catalogue-${var.app_version}-${aws_instance.cataloague.id}"
+  },
+  local.common_tag
+  )
+}
