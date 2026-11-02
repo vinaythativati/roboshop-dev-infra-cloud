@@ -10,7 +10,9 @@ data "aws_ssm_parameter" "vpc" {
   name =  "${var.project_name}-${var.env_name}-vpcid"
 }
 
-
+data "aws_ssm_parameter" "cataloague_sg_id" {
+  name = "${var.project_name}-${var.env_name}-catloague_sg_id"
+}
 
 /*
 data "aws_ssm_parameter" "mongodb_sg_id" {

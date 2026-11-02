@@ -1,7 +1,7 @@
 resource "aws_instance" "catalogue" {
   ami           = local.ami
   instance_type = "t3.micro"
-  vpc_security_group_ids = [local.cataloague_sg_id]
+  vpc_security_group_ids = [local.cataloague_sg_id ]
   subnet_id = local.backend_subnet
 
   tags = merge(var.ec2_tag,
