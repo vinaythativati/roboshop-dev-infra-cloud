@@ -14,13 +14,13 @@ resource "aws_instance" "catalogue" {
 
 resource "terraform_data" "cataloague" {
   triggers_replace = [
-    aws_instance.cataloague.id
+    aws_instance.catalogue.id
     ]
     connection {
     type        = "ssh"
     user        = "ec2-user"
     password =     "DevOps321"
-    host = aws_instance.mongodb.private_ip
+    host = aws_instance.catalogue.private_ip
   }
 
  provisioner "file" {
