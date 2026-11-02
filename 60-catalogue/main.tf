@@ -65,12 +65,12 @@ resource "aws_launch_template" "cataloague" {
     resource_type = "instance"
 
     tags = merge({
-      Name =  "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}
+      Name =  "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}"
     },
     local.common_tag)
 }
 tags = merge({
-  Name = "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}
+  Name = "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}"
 },local.common_tag)
 }
  
