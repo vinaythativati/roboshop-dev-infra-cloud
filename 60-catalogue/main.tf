@@ -1,4 +1,4 @@
-resource "aws_instance" "catalogue" {
+resource "aws_instance" "cataloague" {
   ami           = local.ami
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.cataloague_sg_id ]
@@ -14,13 +14,13 @@ resource "aws_instance" "catalogue" {
 
 resource "terraform_data" "cataloague" {
   triggers_replace = [
-    aws_instance.catalogue.id
+    aws_instance.cataloague.id
     ]
     connection {
     type        = "ssh"
     user        = "ec2-user"
     password =     "DevOps321"
-    host = aws_instance.catalogue.private_ip
+    host = aws_instance.cataloague.private_ip
   }
 
  provisioner "file" {

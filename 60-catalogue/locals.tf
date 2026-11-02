@@ -7,7 +7,7 @@ locals {
     #rabbitmq_sg_id = data.aws_ssm_parameter.rabbitmq_sg_id.value
     cataloague_sg_id =  data.aws_ssm_parameter.cataloague_sg_id.value
     #mysql_sg_id = data.aws_ssm_parameter.mysql_sg_id.value
-    database_subnet_sg_id = split(",", data.aws_ssm_parameter.database_subnet.value)[0]
+    #database_subnet_sg_id = split(",", data.aws_ssm_parameter.database_subnet.value)[0]
      ami = data.aws_ami.ami_data.id
      vpc_id = data.aws_ssm_parameter.vpc.value
      common_tag ={
@@ -15,6 +15,7 @@ locals {
         env_name = "${var.env_name}"
         Terraform = true
      }
+
 
 
 
