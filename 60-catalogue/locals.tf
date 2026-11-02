@@ -1,6 +1,6 @@
 locals {
      backend-alb = data.aws_ssm_parameter.backend_alb_sg_id.value
-     backend_subnet = split(",", data.aws_ssm_parameter.backend_subnet.value)
+     backend_subnet = split(",", data.aws_ssm_parameter.backend_subnet.value)[0]
      common_name = "${var.project_name}-${var.env_name}"
     #mongodb_sg_id = data.aws_ssm_parameter.mongodb_sg_id.value
     #redis_sg_id =  data.aws_ssm_parameter.redis_sg_id.value
