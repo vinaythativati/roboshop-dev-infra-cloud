@@ -31,8 +31,7 @@ resource "terraform_data" "cataloague" {
   provisioner "remote-exec" {
     inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh cataloague ${var.env_name} ${app_version }" ]
 
-  }
-  
+  } 
 }
 
 
@@ -52,3 +51,49 @@ resource "aws_ami_from_instance" "cataloague" {
   local.common_tag
   )
 }
+
+#aws launch template
+
+resource "aws_launch_template" "cataloague" {
+  name = "example"
+  image_id = aws_ami_from_instance.cataloague.id
+  instance_type = "t3.micro"
+  vpc_security_group_ids = [local.cataloague_sg_id]
+  update_default_version = true
+  
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = merge({
+      Name =  "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}
+    },
+    local.common_tag)
+}
+tags = merge({
+  Name = "${local.common_name}-cataloague-${var.app_version}-${aws_instance.cataloague.id}
+},local.common_tag)
+}
+ 
+ #aws target group Terraform
+
+ resource "aws_lb_target_group" "cataloague" {
+  name     = "${local.common_name}-cataloague"
+  port     = 8080
+  protocol = "HTTP"
+  vpc_id   =  local.vpc_id
+  deregistration_delay = 30
+  
+  health_check {
+    healthy_threshold = 2
+    interval = 10
+    matcher = "200-299"
+    path = "/health"
+    port = 8080
+    protocol = "HTTP"
+    timeout = 5
+    unhealthy_threshold = 2
+  }
+}
+
+
+
