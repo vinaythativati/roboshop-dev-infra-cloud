@@ -1,5 +1,5 @@
 #!bin/bash
-component=$1 #catalogue
+component=$1 #cataloague
 enviroment=$2 #dev
 app_version=$3
 dnf install ansible -y

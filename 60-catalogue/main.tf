@@ -29,7 +29,7 @@ resource "terraform_data" "cataloague" {
   }
 
   provisioner "remote-exec" {
-    inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh cataloague ${var.env_name} ${app_version }" ]
+    inline = ["chmod +x /tmp/boostrap.sh", "sudo sh /tmp/boostrap.sh cataloague ${var.env_name} ${var.app_version }" ]
 
   } 
 }
