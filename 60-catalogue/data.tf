@@ -14,6 +14,27 @@ data "aws_ssm_parameter" "cataloague_sg_id" {
   name = "${var.project_name}-${var.env_name}-catloague_sg_id"
 }
 
+
+data "aws_ami" "ami_data" {
+  most_recent      = true
+  owners           = ["973714476881"]
+
+  filter {
+    name   = "name"
+    values = ["Redhat-9-DevOps-Practice"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 /*
 data "aws_ssm_parameter" "mongodb_sg_id" {
   name = "${var.project_name}-${var.env_name}-mongodb_sg_id"
